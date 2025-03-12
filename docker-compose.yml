@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: sporthub_db
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - sporthub_data:/var/lib/postgresql/data
+    restart: always
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sporthub_backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    volumes:
+      - ./backend/app:/usr/src/app/app
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: sporthub_frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    restart: always
+
+volumes:
+  sporthub_data:
