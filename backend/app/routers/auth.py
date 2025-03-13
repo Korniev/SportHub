@@ -52,10 +52,10 @@ async def login(login_data: UserLogin, db: AsyncSession = Depends(get_db)):
 
     user.refresh_token = refresh_token
     await db.commit()
-    return Token(access_token=access_token, refresh_token=refresh_token)
+    return TokenSchema(access_token=access_token, refresh_token=refresh_token)
 
 
-@router.post("/refresh", response_model=Token)
+@router.post("/refresh", response_model=TokenSchema)
 async def refresh_token(body: TokenRefresh, db: AsyncSession = Depends(get_db)):
     try:
         payload = decode_jwt(body.refresh_token)
@@ -78,15 +78,11 @@ async def refresh_token(body: TokenRefresh, db: AsyncSession = Depends(get_db)):
     user.refresh_token = new_refresh
     await db.commit()
 
-    return Token(access_token=new_access, refresh_token=new_refresh)
+    return TokenSchema(access_token=new_access, refresh_token=new_refresh)
 
 
-@router.post("/logout")
+"""@router.post("/logout")
 async def logout(db: AsyncSession = Depends(get_db), token: str = Depends(...)):
-    """
-    Якщо хочемо “відкликати” поточний refresh_token,
-    треба якось визначити користувача.
-    """
     # Залежно від логіки – можна декодувати access_token,
     # знайти user, обнулити refresh_token:
-    raise HTTPException(status_code=501, detail="Not implemented yet")
+    raise HTTPException(status_code=501, detail="Not implemented yet")"""

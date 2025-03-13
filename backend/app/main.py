@@ -8,8 +8,11 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database.db import get_db
+from app.routers import auth, protected_router
 
 app = FastAPI()
+app.include_router(auth.router)
+app.include_router(protected_router.router)
 
 origins = ["*"]
 

@@ -22,6 +22,7 @@ class DatabaseSessionManager:
         except Exception as err:
             print(err)
             await session.rollback()
+            raise
         finally:
             await session.close()
 
