@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field, EmailStr, ConfigDict
 
 
-class UserSchema(BaseModel):
+class UserRegister(BaseModel):
     """
     Schema representing the data structure for creating a new user.
 
@@ -17,6 +17,11 @@ class UserSchema(BaseModel):
     username: str = Field(max_length=150)
     email: EmailStr
     password: str = Field(min_length=6, max_length=8)
+
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
 
 
 class UserResponse(BaseModel):
