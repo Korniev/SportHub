@@ -1,11 +1,11 @@
 from fastapi import Depends
-from gravatar import Gravatar
+from libgravatar import Gravatar
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database.db import get_db
 from app.entity.models import User
-from app.schemas.auth_schemas import UserSchema
+from app.schemas.auth import UserSchema
 
 
 async def get_user_by_email(email: str, db: AsyncSession = Depends(get_db)):

@@ -1,3 +1,4 @@
+import enum
 from datetime import date
 
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
@@ -21,3 +22,9 @@ class User(Base):
 
     created_at: Mapped[date] = mapped_column('created_at', DateTime, default=func.now())
     updated_at: Mapped[date] = mapped_column('updated_at', DateTime, default=func.now(), onupdate=func.now())
+
+
+class Role(enum.Enum):
+    admin: str = "admin"
+    moderator: str = "moderator"
+    user: str = "user"

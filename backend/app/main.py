@@ -8,7 +8,7 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database.db import get_db
-from app.routers import auth, protected_router
+from app.routers import auth, users, protected_router
 
 app = FastAPI()
 app.include_router(auth.router)
@@ -26,8 +26,8 @@ app.add_middleware(
 
 user_agent_ban_list = [r"Googlebot", r"Python-urllib"]
 
-app.include_router(auth.router, prefix='/api')"
-app.include_router(users.router, prefix='/api')"
+app.include_router(auth.router, prefix='/api')
+app.include_router(users.router, prefix='/api')
 
 
 @app.middleware("http")

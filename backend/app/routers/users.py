@@ -9,7 +9,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.repository import users as repository_users
 from app.database.db import get_db
 from app.entity.models import User
-from app.schemas.user import UserResponse
+from app.schemas.auth import UserResponse
 from app.services import auth as auth_service
 from app.conf import config
 

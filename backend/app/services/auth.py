@@ -10,7 +10,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from jose import JWTError, jwt
 
 from app.database.db import get_db
-from app.reposiroty import users as repository_users
+from app.repository import users as repository_users
 from app.conf.config import config
 
 
