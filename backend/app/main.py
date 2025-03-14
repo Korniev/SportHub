@@ -26,9 +26,8 @@ app.add_middleware(
 
 user_agent_ban_list = [r"Googlebot", r"Python-urllib"]
 
-"app.include_router(auth.router, prefix='/api')"
-"app.include_router(contacts.router, prefix='/api')"
-"app.include_router(users.router, prefix='/api')"
+app.include_router(auth.router, prefix='/api')"
+app.include_router(users.router, prefix='/api')"
 
 
 @app.middleware("http")
