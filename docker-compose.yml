@@ -10,6 +10,14 @@ services:
       - sporthub_data:/var/lib/postgresql/data
     restart: always
 
+  redis:
+    image: redis:latest
+    container_name: sporthub_redis
+    ports:
+      - "6379:6379"
+    restart: always
+
+
   backend:
     build:
       context: ./backend
