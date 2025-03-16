@@ -10,8 +10,8 @@ from app.repository import users as repository_users
 from app.database.db import get_db
 from app.entity.models import User
 from app.schemas.auth import UserResponse
-from app.services import auth as auth_service
-from app.conf import config
+from app.services.auth import auth_service
+from app.conf.config import config
 
 router = APIRouter(prefix='/users', tags=['users'])
 cloudinary.config(cloud_name=config.CLD_NAME, api_key=config.CLP_API_KEY, api_secret=config.CLD_API_SECRET, secure=True)

@@ -11,7 +11,7 @@ from app.database.db import get_db
 from app.routers import auth, users, protected_router
 
 app = FastAPI()
-app.include_router(auth.router)
+
 app.include_router(protected_router.router)
 
 origins = ["*"]
@@ -26,8 +26,8 @@ app.add_middleware(
 
 user_agent_ban_list = [r"Googlebot", r"Python-urllib"]
 
-app.include_router(auth.router, prefix='/api')
-app.include_router(users.router, prefix='/api')
+app.include_router(auth.router, prefix='/auth')
+app.include_router(users.router, prefix='/users')
 
 
 @app.middleware("http")
@@ -58,7 +58,7 @@ async def user_agent_ban_middleware(request: Request, call_next: Callable):
     return response
 
 
-@app.get("/")
+@app.get("/test")
 def index():
     """
     Endpoint for testing purposes.
